@@ -12,7 +12,9 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json({extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/', Router);
+app.get('/', (req, res) => {
+    res.send('products api running new deploy');
+});
 
 
 
