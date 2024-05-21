@@ -12,14 +12,18 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json({extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-    res.send('products api running new deploy');
-});
+app.use('/', Router);
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static("client/build"));
+}
 
 
+// app.get('/', (req, res) => {
+//     res.send('products api running new deploy');
+// });
 
-
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
 app.listen(PORT, ()=>{console.log(`server listening on port ${PORT}`)});
 
